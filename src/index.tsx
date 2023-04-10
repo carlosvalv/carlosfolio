@@ -3,12 +3,30 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: "Ultra";   /*Can be any text*/
+    src: local("Ultra-Regular"), url("./fonts/Ultra-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "YesevaOne";   /*Can be any text*/
+    src: local("YesevaOne-Regular"), url("./fonts/YesevaOne-Regular.ttf") format("truetype");
+  }
+
+  body {
+    font-family: 'YesevaOne';
+  }
+`;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <GlobalStyle/>
     <App />
   </React.StrictMode>
 );

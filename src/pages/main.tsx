@@ -5,6 +5,7 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     overflow: hidden;
+    font-size: 100px; 
 `;
 
 export function Main() {
@@ -21,7 +22,7 @@ export function Main() {
     <Container>
       <SectionsContainer {...options}>
         <Section>home</Section>
-        <Section >second page</Section>
+        <Section>more</Section>
       </SectionsContainer>
     </Container>
   );
