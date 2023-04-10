@@ -1,28 +1,34 @@
 import styled from 'styled-components';
-import { SectionsContainer, Section } from 'react-fullpage';
-
+import { FullPage, Slide } from 'react-full-page';
 const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  
+    font-size: 100px; 
+`;
+const SlideContainer = styled.div`
+    font-size: 80px; 
+    height: calc(100% - 32px);
+    background: #ebe1c5;
+    padding: 16px;
+    color:#4e6b66;
+
 `;
 
 export function Main() {
-  const options = {
-    sectionClassName: 'section',
-    anchors: ['sectionOne', 'sectionTwo'],
-    scrollBar: false,
-    navigation: true,
-    verticalAlign: false,
-    arrowNavigation: true
-  };
+  function beforeChange(e: any) {
+    //{from: 0, to: 1}
+    console.log(e);
+  }
 
   return (
     <Container>
-      <SectionsContainer {...options}>
-        <Section>home</Section>
-        <Section >second page</Section>
-      </SectionsContainer>
+      <FullPage controls={false} beforeChange={beforeChange}>
+        <Slide>
+          <SlideContainer>Inner slide content</SlideContainer>
+        </Slide>
+        <Slide>
+          <SlideContainer>Another slide content</SlideContainer>
+        </Slide>
+      </FullPage>
     </Container>
   );
 }
