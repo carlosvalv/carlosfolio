@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 import { FullPage, Slide } from 'react-full-page';
+import { Home } from '../components/home';
+import { Header } from '../components/header';
+import { About } from '../components/about';
+import { Footer } from '../components/footer';
 const Container = styled.div`
-  
-    font-size: 100px; 
 `;
-const SlideContainer = styled.div`
-    font-size: 80px; 
-    height: calc(100% - 32px);
-    background: #ebe1c5;
-    padding: 16px;
-    color:#4e6b66;
 
+const SlideContainer = styled.main`
+    height: calc(100% - 102px);
+    background: #FFFFFF;
+    padding: 51px 100px;
+    color: #2F2F2F;
 `;
 
 export function Main() {
@@ -21,14 +22,16 @@ export function Main() {
 
   return (
     <Container>
+      <Header/>
       <FullPage controls={false} beforeChange={beforeChange}>
         <Slide>
-          <SlideContainer>Inner slide content</SlideContainer>
+          <SlideContainer><Home/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer>Another slide content</SlideContainer>
+          <SlideContainer><About/></SlideContainer>
         </Slide>
       </FullPage>
+      <Footer/>
     </Container>
   );
 }

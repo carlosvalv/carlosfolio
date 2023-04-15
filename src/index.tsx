@@ -16,8 +16,14 @@ const GlobalStyle = createGlobalStyle`
     src: local("YesevaOne-Regular"), url("./fonts/YesevaOne-Regular.ttf") format("truetype");
   }
 
+  @font-face {
+    font-family: "Fahkwang";   /*Can be any text*/
+    src: local("Fahkwang-Light"), url("./fonts/Fahkwang-Light.ttf") format("truetype");
+  }
+
   body {
-    font-family: 'YesevaOne';
+    font-family: 'Fahkwang';
+    color: #2F2F2F;
   }
 `;
 
