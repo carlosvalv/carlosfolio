@@ -5,6 +5,8 @@ import { Header, HeaderSection } from '../components/header';
 import { About } from '../components/about';
 import { Footer } from '../components/footer';
 import { useState } from 'react';
+import { Work } from '../components/work';
+import { Contact } from '../components/contact';
 const Container = styled.div`
 `;
 
@@ -51,10 +53,16 @@ export function Main() {
       <Header selected={selected} handleSection={(section: HeaderSection) => { setSelected(section) }} />
       <FullPage duration={100} controls={false} beforeChange={beforeChange} >
         <Slide>
-          <SlideContainer id={"home"}><Home /></SlideContainer>
+          <SlideContainer id={"home"}><Home/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"about"}><About /></SlideContainer>
+          <SlideContainer id={"about"}><About/></SlideContainer>
+        </Slide>
+        <Slide>
+          <SlideContainer id={"work"}><Work/></SlideContainer>
+        </Slide>
+        <Slide>
+          <SlideContainer id={"contact"}><Contact/></SlideContainer>
         </Slide>
       </FullPage>
       <Footer/>

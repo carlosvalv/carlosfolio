@@ -64,8 +64,8 @@ export function Header(props: HeaderProps) {
           <List>
             <li><Link href={"#home"} selected={props.selected === HeaderSection.Home} onClick={()=>clickSection(HeaderSection.Home)}>Home</Link></li>
             <li><Link href={"#about"} selected={props.selected === HeaderSection.About} onClick={()=>clickSection(HeaderSection.About)}>About</Link></li>
-            <li><Link selected={props.selected === HeaderSection.Work} onClick={()=>clickSection(HeaderSection.Work)}>Work</Link></li>
-            <li><Link selected={props.selected === HeaderSection.Contact} onClick={()=>clickSection(HeaderSection.Contact)}>Contact</Link></li>
+            <li><Link href={"#work"} selected={props.selected === HeaderSection.Work} onClick={()=>clickSection(HeaderSection.Work)}>Work</Link></li>
+            <li><Link href={"#contact"} selected={props.selected === HeaderSection.Contact} onClick={()=>clickSection(HeaderSection.Contact)}>Contact</Link></li>
           </List>
         </Sections>
       </nav>
