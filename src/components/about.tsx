@@ -1,28 +1,46 @@
 import styled from 'styled-components';
 
 const Container = styled.section`
-  margin-top: 7%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5em;
+  justify-content: center;
+  
+  @media (max-width: 750px) {
+    gap: 3em;
+  }
 `;
 
-const Title = styled.div`
+const Title = styled.h2`
   font-size: 5.5vmax; 
+  margin: 0;
 `;
 
 const Body = styled.div`
   display: flex;
   gap: 2em;
+  margin: 0 9%;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+  @media (max-width: 750px) {
+    margin: 0;
+  }
 `;
 
-const Desc = styled.p`
+const Descriptions = styled.div`
   flex: 3;
-  line-height: 1.5;
-  font-size: 2.5vh;
   margin-top: 0;
+`;
+
+const Desc = styled.p<{bold: boolean}>`
+  line-height: 1.5;
+  font-size: 2vh;
+  margin-top: 0;
+  font-weight: ${props=> props.bold ? 700 : 200};
 `;
 
 const Tags = styled.div`
@@ -37,6 +55,7 @@ const List = styled.div`
 `;
 
 const TagsTitle = styled.h2`
+  font-size: 1.75vh;
   margin-top: 0;
 `;
 
@@ -46,26 +65,28 @@ const Tag = styled.span`
   padding: 5px 10px;
   color: #fff;
 `;
+
 export function About() {
   return (
     <Container>
-      <Title>about</Title>
+      <Title>About</Title>
       <Body>
-        <Desc>Development and design can feed and learn one from each other in any project. Hybrid professionals that understand and can communicate with both ends have the key to a better work flow in every environment.I believe more can be achieved when both ends meet, and I have a passion for being right where they do so.</Desc>
+        <Descriptions>
+          <Desc bold={false}>As a highly motivated full stack engineer, I have a passion for development and the thrill of overcoming big technical challenges.
+            With a strong understanding of both front-end and back-end technologies. I am driven to create high-quality software that makes a difference.</Desc>
+          <Desc bold={true}>I am always seeking new opportunities to further my skills and work on impactful projects that drive innovation and make a positive impact.</Desc>
+        </Descriptions>
         <Tags>
-          <TagsTitle>Tecnologias</TagsTitle>
+          <TagsTitle>Skills & Technologies</TagsTitle>
           <List>
             <Tag>Html</Tag>
             <Tag>Javascript</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Html</Tag>
-            <Tag>Html</Tag>
+            <Tag>Typescript</Tag>
+            <Tag>React</Tag>
+            <Tag>.Net</Tag>
+            <Tag>MongoDB</Tag>
+            <Tag>JSON Parsing</Tag>
+            <Tag>Git</Tag>
           </List>
         </Tags>
       </Body>

@@ -5,6 +5,7 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 20px;
 `;
 
@@ -12,15 +13,11 @@ const Title = styled.h2`
     font-size: 5.5vmax;
     margin: 0;
 `;
-const Desc = styled.p`
-    max-width: 600px;
-`;
-export function Home() {
+
+export function Work() {
   return (
     <Container>
-      <span>Hi, my name is</span>
-      <Title>Carlos Valverde</Title>
-      <Desc>I'm a software engineer specialized in both Front and Back with a strong understanding of both.</Desc>
+      <Title>Work</Title>
     </Container>
   );
 }
