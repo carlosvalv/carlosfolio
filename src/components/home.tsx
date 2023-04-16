@@ -8,8 +8,9 @@ const Container = styled.section`
   gap: 20px;
 `;
 
-const Title = styled.div`
-    font-size: 5.5vmax; 
+const Title = styled.h2`
+    font-size: 5.5vmax;
+    margin: 0;
 `;
 const Desc = styled.p`
     max-width: 600px;
@@ -17,8 +18,9 @@ const Desc = styled.p`
 export function Home() {
   return (
     <Container>
-      <Title>Full Stack Developer</Title>
-      <Desc>Front end software developement in Barcelona, with a particular passion for design, creativity and communication.</Desc>
+      <span>Hi, my name is</span>
+      <Title>Carlos Valverde</Title>
+      <Desc>I'm a software engineer specialized in both Front and Back with a strong understanding of both.</Desc>
     </Container>
   );
 }

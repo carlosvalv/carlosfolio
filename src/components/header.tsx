@@ -30,20 +30,42 @@ const List = styled.ul`
   }
 `;
 
-const Link = styled.a`
+const Link = styled.a<{selected: boolean}>`
   padding: 10px;
+  :-webkit-any-link{
+    text-decoration : ${props=> props.selected ?"underline" : "none"};
+    color: rgb(47, 47, 47)
+
+  }
+  ${props=> props.selected && "text-decoration: underline"};
 `;
 
-export function Header() {
+type HeaderProps = {
+  selected: HeaderSection,
+  handleSection: any,
+}
+
+export enum HeaderSection {
+  Home,
+  About,
+  Work,
+  Contact
+}
+
+export function Header(props: HeaderProps) {
+  const clickSection = (section: HeaderSection) => {
+    props.handleSection(section)
+  }
+
   return (
     <Container>
       <nav>
         <Sections>
           <List>
-            <li><Link>Home</Link></li>
-            <li><Link>Experience</Link></li>
-            <li><Link>Work</Link></li>
-            <li><Link>Contact</Link></li>
+            <li><Link href={"#home"} selected={props.selected === HeaderSection.Home} onClick={()=>clickSection(HeaderSection.Home)}>Home</Link></li>
+            <li><Link href={"#about"} selected={props.selected === HeaderSection.About} onClick={()=>clickSection(HeaderSection.About)}>About</Link></li>
+            <li><Link selected={props.selected === HeaderSection.Work} onClick={()=>clickSection(HeaderSection.Work)}>Work</Link></li>
+            <li><Link selected={props.selected === HeaderSection.Contact} onClick={()=>clickSection(HeaderSection.Contact)}>Contact</Link></li>
           </List>
         </Sections>
       </nav>
