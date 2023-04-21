@@ -65,7 +65,7 @@ export function Main() {
           <SlideContainer id={"contact"}><Contact/></SlideContainer>
         </Slide>
       </FullPage>
-      <Footer/>
+      {selected !== 3 && <Footer/>}
     </Container>
   );
 }
