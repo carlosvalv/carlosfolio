@@ -7,7 +7,9 @@ import { Footer } from '../components/footer';
 import { useState } from 'react';
 import { Work } from '../components/work';
 import { Contact } from '../components/contact';
+
 const Container = styled.div`
+  user-select: none;
 `;
 
 const SlideContainer = styled.main`
