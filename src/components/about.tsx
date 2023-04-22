@@ -80,6 +80,7 @@ export function About() {
           <TagsTitle>Skills & Technologies</TagsTitle>
           <List>
             <Tag>Html</Tag>
+            <Tag>CSS</Tag>
             <Tag>Javascript</Tag>
             <Tag>Typescript</Tag>
             <Tag>React</Tag>
@@ -87,6 +88,8 @@ export function About() {
             <Tag>MongoDB</Tag>
             <Tag>JSON Parsing</Tag>
             <Tag>Git</Tag>
+            <Tag>Github</Tag>
+            <Tag>Object-oriented programming</Tag>
           </List>
         </Tags>
       </Body>
