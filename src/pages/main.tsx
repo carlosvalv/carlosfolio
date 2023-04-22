@@ -7,7 +7,9 @@ import { Footer } from '../components/footer';
 import { useState } from 'react';
 import { Work } from '../components/work';
 import { Contact } from '../components/contact';
+
 const Container = styled.div`
+  user-select: none;
 `;
 
 const SlideContainer = styled.main`
@@ -65,7 +67,7 @@ export function Main() {
           <SlideContainer id={"contact"}><Contact/></SlideContainer>
         </Slide>
       </FullPage>
-      <Footer/>
+      {selected !== 3 && <Footer/>}
     </Container>
   );
 }
