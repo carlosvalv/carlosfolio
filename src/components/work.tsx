@@ -16,6 +16,19 @@ const Container = styled.section`
   .slick-next:before, .slick-prev:before{
     color: #2F2F2F
   }
+  .slick-track{
+    display: flex;
+    align-items: stretch;
+  }
+  .slick-slide{
+    height: auto;
+    >div{
+      height: 100%;
+    }
+  }
+  .slick-dots{
+    bottom: -35px;
+  }
 `;
 
 const Title = styled.h2`
@@ -26,9 +39,9 @@ const Title = styled.h2`
 
 const items = [
   { id: 1, title: "My own website", tags: ["React", "CSS", "Typescript"], desc: "This is my personal portfolio, where I showcase my work and projects", url: "https://github.com/carlosvalv/carlosfolio" },
-  { id: 2, title: "Go class", tags: ["React", "CSS", "Typescript"], desc: "This is my personal portfolio, where I showcase my work and projects", url: "https://github.com/carlosvalv/carlosfolio" },
-  { id: 3, title: "Aquila fortis", tags: ["Angular", "Typescript", "Arduino", "MySQL", "Java"], desc: "Real time monitored innovative transportation system for blood products, organs and biological materials", url: "https://github.com/ruben69695/aquilafortis" },
-  { id: 4, title: "Hungry crossing", tags: ["Java", "MySQL"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
+  { id: 2, title: "Go class", tags: ["React", "CSS", "Typescript, .Net", "PostgreSQL"], desc: "This is my personal portfolio, where I showcase my work and projects", url: "https://github.com/carlosvalv/carlosfolio" },
+  { id: 3, title: "Aquila fortis", tags: ["Angular", "Arduino", "MySQL", "Java"], desc: "Real time monitored innovative transportation system for blood products, organs and biological materials", url: "https://github.com/ruben69695/aquilafortis" },
+  { id: 4, title: "Hungry crossing", tags: ["Java", "MySQL", "PHP"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
 ];
 
 export function Work() {

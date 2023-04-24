@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 200px;
+  height: calc(100% - 28px);
   min-width: 200px;
   min-height: 260px;
   padding: 14px;
