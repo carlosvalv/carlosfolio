@@ -8,7 +8,6 @@ const Container = styled.footer`
   bottom: 0px;
   width: 100%;
   height: var(--nav-height);
-  backdrop-filter: blur(10px);
   transition: var(--transition);
   filter: none !important;
   pointer-events: auto !important;

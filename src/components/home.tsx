@@ -1,11 +1,12 @@
+import { useMobileOrientation } from 'react-device-detect';
 import styled from 'styled-components';
 
-const Container = styled.section`
+const Container = styled.section<{isLandscape: boolean}>`
   height: 100%;
   display: flex;
   justify-content: space-evenly;
   @media (max-width: 750px) {
-    flex-direction: column;
+    ${props=> !props.isLandscape && "flex-direction: column"};
   }
 `;
 
@@ -46,7 +47,7 @@ const Img = styled.img`
 
 export function Home() {
   return (
-    <Container>
+    <Container isLandscape={useMobileOrientation().isLandscape}>
       <Left>
         <span>Hi, my name is</span>
         <Title>Carlos Valverde</Title>

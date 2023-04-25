@@ -1,14 +1,16 @@
+import { useState } from 'react';
+import { isMobile, useMobileOrientation } from 'react-device-detect';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Container = styled.div<{ isLandscape: boolean }>`
   width: 200px;
   height: calc(100% - 28px);
   min-width: 200px;
-  min-height: 260px;
+  ${props => !props.isLandscape && "min-height: 260px"};
   padding: 14px;
   border-radius: 16px;
   background-color: #2F2F2F;
-  gap: 1em;
+  gap: ${props => props.isLandscape ? "0.75em" : "1em"};
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -35,12 +37,13 @@ const Tag = styled.span`
   padding: 5px 10px;
   border-radius: 25px;
   font-size: 14px;
+  font-size: 0.875vmax;
   font-weight: 600;
 `;
 
 const Desc = styled.p`
   color: #fff;
-  font-size: 1.25vh;
+  font-size: 1vmax;
 `;
 
 const Footer = styled.div`
@@ -66,18 +69,21 @@ type CardProps = {
 }
 
 export function Card(props: CardProps) {
+  const [isLandscape] = useState<boolean>(useMobileOrientation().isLandscape && isMobile);
   return (
-    <Container>
+    <Container isLandscape={isLandscape}>
       <TitleCard>{props.title}</TitleCard>
       <Tags>
-        {props.tags.map((tag : string) =>{
+        {props.tags.map((tag: string) => {
           return <Tag>{tag}</Tag>
         })}
       </Tags>
       <Desc>{props.desc}</Desc>
-      <Footer>
-        <Link target='_blank' rel={"noreferrer"} href={props.url}>View Project</Link>
-      </Footer>
+      {!isLandscape &&
+        <Footer>
+          <Link target='_blank' rel={"noreferrer"} href={props.url}>View Project</Link>
+        </Footer>
+      }
     </Container>
   );
 }

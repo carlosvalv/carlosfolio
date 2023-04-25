@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import { Card } from './card';
 import Slider from "react-slick";
 import { useRef } from 'react';
+import { isMobile, useMobileOrientation } from 'react-device-detect';
 
-const Container = styled.section`
+const Container = styled.section<{ isLandscape: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: 5em;
+  gap: ${props=> props.isLandscape ? "3em" : "5em"};
   height: 100%;
   justify-content: center;
   .slick-slider{
@@ -39,7 +40,7 @@ const Title = styled.h2`
 
 const items = [
   { id: 1, title: "My own website", tags: ["React", "CSS", "Typescript"], desc: "This is my personal portfolio, where I showcase my work and projects", url: "https://github.com/carlosvalv/carlosfolio" },
-  { id: 2, title: "Go class", tags: ["React", "CSS", "Typescript, .Net", "PostgreSQL"], desc: "This is my personal portfolio, where I showcase my work and projects", url: "https://github.com/carlosvalv/carlosfolio" },
+  { id: 2, title: "Go class", tags: ["React", "CSS", "Typescript", ".Net", "PostgreSQL"], desc: "This is my personal portfolio, where I showcase my work and projects", url: "https://github.com/carlosvalv/carlosfolio" },
   { id: 3, title: "Aquila fortis", tags: ["Angular", "Arduino", "MySQL", "Java"], desc: "Real time monitored innovative transportation system for blood products, organs and biological materials", url: "https://github.com/ruben69695/aquilafortis" },
   { id: 4, title: "Hungry crossing", tags: ["Java", "MySQL", "PHP"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
 ];
@@ -84,7 +85,7 @@ export function Work() {
   };
 
   return (
-    <Container>
+    <Container isLandscape={useMobileOrientation().isLandscape && isMobile}>
       <Title>Work</Title>
       <Slider ref={sliderRef} {...settings}>{slides}</Slider>
     </Container>
