@@ -7,12 +7,13 @@ import { Footer } from '../components/footer';
 import { useState } from 'react';
 import { Work } from '../components/work';
 import { Contact } from '../components/contact';
+import { isMobile, useMobileOrientation } from 'react-device-detect';
 
 const Container = styled.div`
   user-select: none;
 `;
 
-const SlideContainer = styled.main`
+const SlideContainer = styled.main<{isLandscape: boolean}>`
   height: calc(100% - 102px);
   background: #FFFFFF;
   padding: 51px 100px;
@@ -23,7 +24,11 @@ const SlideContainer = styled.main`
   }
   @media (max-width: 750px) {
     padding: 51px 25px;
+    ${props=> props.isLandscape && "padding: 30px 25px;"}
+    ${props=> props.isLandscape && "height: calc(100% - 60px);"}
   }
+
+
 `;
 
 export function Main() {
@@ -55,16 +60,16 @@ export function Main() {
       <Header selected={selected} handleSection={(section: HeaderSection) => { setSelected(section) }} />
       <FullPage duration={100} controls={false} beforeChange={beforeChange} >
         <Slide>
-          <SlideContainer id={"home"}><Home/></SlideContainer>
+          <SlideContainer id={"home"} isLandscape={useMobileOrientation().isLandscape && isMobile}><Home/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"about"}><About/></SlideContainer>
+          <SlideContainer id={"about"} isLandscape={useMobileOrientation().isLandscape && isMobile}><About/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"work"}><Work/></SlideContainer>
+          <SlideContainer id={"work"} isLandscape={useMobileOrientation().isLandscape && isMobile}><Work/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"contact"}><Contact/></SlideContainer>
+          <SlideContainer id={"contact"} isLandscape={useMobileOrientation().isLandscape && isMobile}><Contact/></SlideContainer>
         </Slide>
       </FullPage>
       {selected !== 3 && <Footer/>}

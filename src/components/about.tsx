@@ -1,11 +1,12 @@
+import { isMobile, useMobileOrientation } from 'react-device-detect';
 import styled from 'styled-components';
 
-const Container = styled.section`
+const Container = styled.section<{isLandscape: boolean}>`
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5em;
+  gap: ${props=>props.isLandscape ? "4em" : "5em"};
   justify-content: center;
   
   @media (max-width: 750px) {
@@ -68,7 +69,7 @@ const Tag = styled.span`
 
 export function About() {
   return (
-    <Container>
+    <Container isLandscape={useMobileOrientation().isLandscape && isMobile}>
       <Title>About</Title>
       <Body>
         <Descriptions>
