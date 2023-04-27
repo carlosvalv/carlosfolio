@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Card } from './card';
 import Slider from "react-slick";
 import { useRef } from 'react';
-import { isMobile, useMobileOrientation } from 'react-device-detect';
+import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
 
 const Container = styled.section<{ isLandscape: boolean }>`
   display: flex;
@@ -93,7 +93,7 @@ export function Work() {
   };
 
   return (
-    <Container isLandscape={useMobileOrientation().isLandscape && isMobile}>
+    <Container isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}>
       <Title>Work</Title>
       <Slider ref={sliderRef} {...settings}>{slides}</Slider>
     </Container>

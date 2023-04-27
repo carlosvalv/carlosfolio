@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { FullPage, Slide } from 'react-full-page';
 import { Home } from '../components/home';
-import { Header, HeaderSection } from '../components/header';
+import { Header } from '../components/header';
 import { About } from '../components/about';
 import { Footer } from '../components/footer';
 import {useState } from 'react';
 import { Work } from '../components/work';
 import { Contact } from '../components/contact';
-import { isMobile, useMobileOrientation } from 'react-device-detect';
+import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
 
 const Container = styled.div`
   user-select: none;
@@ -88,16 +88,16 @@ export function Main() {
       <Header selected={selected}/>
       <FullPage duration={100} controls beforeChange={beforeChange} controlsProps={{className: 'controls'}}>
         <Slide>
-          <SlideContainer id={"home"} isLandscape={useMobileOrientation().isLandscape && isMobile}><Home/></SlideContainer>
+          <SlideContainer id={"home"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><Home/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"about"} isLandscape={useMobileOrientation().isLandscape && isMobile}><About/></SlideContainer>
+          <SlideContainer id={"about"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><About/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"work"} isLandscape={useMobileOrientation().isLandscape && isMobile}><Work/></SlideContainer>
+          <SlideContainer id={"work"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><Work/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"contact"} isLandscape={useMobileOrientation().isLandscape && isMobile}><Contact/></SlideContainer>
+          <SlideContainer id={"contact"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><Contact/></SlideContainer>
         </Slide>
       </FullPage>
       {selected !== 3 && <Footer/>}

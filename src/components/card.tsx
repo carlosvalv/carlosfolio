@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isMobile, useMobileOrientation } from 'react-device-detect';
+import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
 import styled from 'styled-components';
 
 const Container = styled.div<{ isLandscape: boolean }>`
@@ -69,7 +69,7 @@ type CardProps = {
 }
 
 export function Card(props: CardProps) {
-  const [isLandscape] = useState<boolean>(useMobileOrientation().isLandscape && isMobile);
+  const [isLandscape] = useState<boolean>(useMobileOrientation().isLandscape && isMobile && !isTablet);
   return (
     <Container isLandscape={isLandscape}>
       <TitleCard>{props.title}</TitleCard>
