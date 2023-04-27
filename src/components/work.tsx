@@ -7,14 +7,19 @@ import { isMobile, useMobileOrientation } from 'react-device-detect';
 const Container = styled.section<{ isLandscape: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: ${props=> props.isLandscape ? "3em" : "5em"};
+  gap: ${props => props.isLandscape ? "3em" : "5em"};
   height: 100%;
   justify-content: center;
   .slick-slider{
     width: 90%;
     margin: 0 auto;
   }
+  .slick-next, .slick-prev{
+    width: 25px;
+    height: 25px;
+  }
   .slick-next:before, .slick-prev:before{
+    font-size: 25px;
     color: #2F2F2F
   }
   .slick-track{
@@ -29,6 +34,9 @@ const Container = styled.section<{ isLandscape: boolean }>`
   }
   .slick-dots{
     bottom: -35px;
+    li button:before{
+      color: #2F2F2F
+    }
   }
 `;
 
@@ -49,7 +57,7 @@ export function Work() {
   const sliderRef = useRef<any>(null);
 
   const slides = items.map((item) => (
-    <Card title={item.title} desc={item.desc} tags={item.tags} url={item.url} />
+    <Card key={item.id} title={item.title} desc={item.desc} tags={item.tags} url={item.url} />
   ));
 
   const settings = {

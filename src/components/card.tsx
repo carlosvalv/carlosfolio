@@ -41,9 +41,9 @@ const Tag = styled.span`
   font-weight: 600;
 `;
 
-const Desc = styled.p`
+const Desc = styled.p<{ isLandscape: boolean }>`
   color: #fff;
-  font-size: 1vmax;
+  font-size: ${props=> props.isLandscape ? "1vmax" : "0.875em"};
 `;
 
 const Footer = styled.div`
@@ -75,10 +75,10 @@ export function Card(props: CardProps) {
       <TitleCard>{props.title}</TitleCard>
       <Tags>
         {props.tags.map((tag: string) => {
-          return <Tag>{tag}</Tag>
+          return <Tag key={tag}>{tag}</Tag>
         })}
       </Tags>
-      <Desc>{props.desc}</Desc>
+      <Desc isLandscape={isLandscape}>{props.desc}</Desc>
       {!isLandscape &&
         <Footer>
           <Link target='_blank' rel={"noreferrer"} href={props.url}>View Project</Link>

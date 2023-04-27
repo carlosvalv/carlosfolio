@@ -4,13 +4,16 @@ import { Home } from '../components/home';
 import { Header, HeaderSection } from '../components/header';
 import { About } from '../components/about';
 import { Footer } from '../components/footer';
-import { useState } from 'react';
+import {useState } from 'react';
 import { Work } from '../components/work';
 import { Contact } from '../components/contact';
 import { isMobile, useMobileOrientation } from 'react-device-detect';
 
 const Container = styled.div`
   user-select: none;
+  .controls{
+    display: none;
+  }
 `;
 
 const SlideContainer = styled.main<{isLandscape: boolean}>`
@@ -27,12 +30,37 @@ const SlideContainer = styled.main<{isLandscape: boolean}>`
     ${props=> props.isLandscape && "padding: 30px 25px;"}
     ${props=> props.isLandscape && "height: calc(100% - 60px);"}
   }
-
-
 `;
 
 export function Main() {
   const [selected, setSelected] = useState<number>(0);
+
+  function prevSlide(){
+    var controls = document.getElementsByClassName("controls");
+    //@ts-ignore
+    controls[0]!.firstChild!.click();
+  }
+
+  function nextSlide(){
+    var controls = document.getElementsByClassName("controls");
+    //@ts-ignore
+    controls[0]!.lastChild!.click();
+  }
+
+  function checkKey(e: any) {
+    e = e || window.event;
+    e.preventDefault();
+    // eslint-disable-next-line
+    if (e.keyCode == '38') {
+      prevSlide();
+    }
+    // eslint-disable-next-line
+    else if (e.keyCode == '40') {
+      nextSlide();
+    }
+}
+  document.onkeydown = checkKey;
+
   function beforeChange(e: any) {
     //{from: 0, to: 1}
     setSelected(e.to);
@@ -57,8 +85,8 @@ export function Main() {
 
   return (
     <Container>
-      <Header selected={selected} handleSection={(section: HeaderSection) => { setSelected(section) }} />
-      <FullPage duration={100} controls={false} beforeChange={beforeChange} >
+      <Header selected={selected}/>
+      <FullPage duration={100} controls beforeChange={beforeChange} controlsProps={{className: 'controls'}}>
         <Slide>
           <SlideContainer id={"home"} isLandscape={useMobileOrientation().isLandscape && isMobile}><Home/></SlideContainer>
         </Slide>
