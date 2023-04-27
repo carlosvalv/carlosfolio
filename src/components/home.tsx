@@ -1,4 +1,4 @@
-import { useMobileOrientation } from 'react-device-detect';
+import { isTablet, useMobileOrientation } from 'react-device-detect';
 import styled from 'styled-components';
 
 const Container = styled.section<{isLandscape: boolean}>`
@@ -47,7 +47,7 @@ const Img = styled.img`
 
 export function Home() {
   return (
-    <Container isLandscape={useMobileOrientation().isLandscape}>
+    <Container isLandscape={useMobileOrientation().isLandscape && !isTablet}>
       <Left>
         <span>Hi, my name is</span>
         <Title>Carlos Valverde</Title>

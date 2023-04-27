@@ -1,4 +1,4 @@
-import { isMobile, useMobileOrientation } from 'react-device-detect';
+import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
 import styled from 'styled-components';
 
 const Container = styled.section<{isLandscape: boolean}>`
@@ -69,7 +69,7 @@ const Tag = styled.span`
 
 export function About() {
   return (
-    <Container isLandscape={useMobileOrientation().isLandscape && isMobile}>
+    <Container isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}>
       <Title>About</Title>
       <Body>
         <Descriptions>

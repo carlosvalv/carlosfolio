@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isMobile, useMobileOrientation } from 'react-device-detect';
+import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
 import styled from 'styled-components';
 
 const Container = styled.div<{ isLandscape: boolean }>`
@@ -41,9 +41,9 @@ const Tag = styled.span`
   font-weight: 600;
 `;
 
-const Desc = styled.p`
+const Desc = styled.p<{ isLandscape: boolean }>`
   color: #fff;
-  font-size: 1vmax;
+  font-size: ${props=> props.isLandscape ? "1vmax" : "0.875em"};
 `;
 
 const Footer = styled.div`
@@ -69,16 +69,16 @@ type CardProps = {
 }
 
 export function Card(props: CardProps) {
-  const [isLandscape] = useState<boolean>(useMobileOrientation().isLandscape && isMobile);
+  const [isLandscape] = useState<boolean>(useMobileOrientation().isLandscape && isMobile && !isTablet);
   return (
     <Container isLandscape={isLandscape}>
       <TitleCard>{props.title}</TitleCard>
       <Tags>
         {props.tags.map((tag: string) => {
-          return <Tag>{tag}</Tag>
+          return <Tag key={tag}>{tag}</Tag>
         })}
       </Tags>
-      <Desc>{props.desc}</Desc>
+      <Desc isLandscape={isLandscape}>{props.desc}</Desc>
       {!isLandscape && props.url &&
         <Footer>
           <Link target='_blank' rel={"noreferrer"} href={props.url}>View Project</Link>

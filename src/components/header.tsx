@@ -41,8 +41,7 @@ const Link = styled.a<{selected: boolean}>`
 `;
 
 type HeaderProps = {
-  selected: HeaderSection,
-  handleSection: any,
+  selected: HeaderSection
 }
 
 export enum HeaderSection {
@@ -54,7 +53,9 @@ export enum HeaderSection {
 
 export function Header(props: HeaderProps) {
   const clickSection = (section: HeaderSection) => {
-    props.handleSection(section)
+    var controls = document.getElementsByClassName("controls");
+    //@ts-ignore
+    controls[0].childNodes[1 + section].click();
   }
 
   return (
