@@ -65,7 +65,7 @@ type CardProps = {
   title: string,
   tags: string[],
   desc: string,
-  url: string
+  url?: string
 }
 
 export function Card(props: CardProps) {
@@ -79,7 +79,7 @@ export function Card(props: CardProps) {
         })}
       </Tags>
       <Desc isLandscape={isLandscape}>{props.desc}</Desc>
-      {!isLandscape &&
+      {!isLandscape && props.url &&
         <Footer>
           <Link target='_blank' rel={"noreferrer"} href={props.url}>View Project</Link>
         </Footer>
