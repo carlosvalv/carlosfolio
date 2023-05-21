@@ -37,7 +37,7 @@ const Tag = styled.span`
   padding: 5px 10px;
   border-radius: 25px;
   font-size: 14px;
-  font-size: 0.875vmax;
+  font-size: 1.5vh;
   font-weight: 600;
 `;
 
