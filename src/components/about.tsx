@@ -56,7 +56,7 @@ const List = styled.div`
 `;
 
 const TagsTitle = styled.h2`
-  font-size: 1.75vh;
+  font-size: 2vh;
   margin-top: 0;
 `;
 
@@ -64,7 +64,16 @@ const Tag = styled.span`
   background: #2F2F2F;
   border-radius: 25px;
   padding: 5px 10px;
+  font-size: 2vh;
   color: #fff;
+  
+  @media (max-width: 750px) {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
 `;
 
 export function About() {

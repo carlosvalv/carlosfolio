@@ -8,6 +8,10 @@ const Container = styled.section<{isLandscape: boolean}>`
   justify-content: center;
   align-items: center;
   gap: ${props=>props.isLandscape ? "4em" : "5em"};
+
+  @media (max-width: 750px) {
+    gap: 2.5em;
+  }
 `;
 
 const Title = styled.h2`
