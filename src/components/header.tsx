@@ -8,7 +8,6 @@ const Container = styled.header`
   top: 0px;
   width: 100%;
   height: var(--nav-height);
-  //background-color: rgba(10, 25, 47, 0.85);
   backdrop-filter: blur(10px);
   transition: var(--transition);
   filter: none !important;
