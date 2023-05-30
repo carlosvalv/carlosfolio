@@ -73,7 +73,6 @@ const Tag = styled.span`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
 `;
 
 export function About() {
@@ -89,14 +88,14 @@ export function About() {
         <Tags>
           <TagsTitle>Skills & Technologies</TagsTitle>
           <List>
-            <Tag>Html</Tag>
-            <Tag>CSS</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Typescript</Tag>
             <Tag>React</Tag>
             <Tag>.Net</Tag>
             <Tag>MongoDB</Tag>
-            <Tag>JSON Parsing</Tag>
+            <Tag>PostgreSQL</Tag>
+            <Tag>Typescript</Tag>
+            <Tag>Javascript</Tag>
+            <Tag>Html</Tag>
+            <Tag>CSS</Tag>
             <Tag>Git</Tag>
             <Tag>Github</Tag>
             <Tag>Object-oriented programming</Tag>
