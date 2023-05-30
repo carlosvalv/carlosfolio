@@ -4,7 +4,7 @@ import { Home } from '../components/home';
 import { Header } from '../components/header';
 import { About } from '../components/about';
 import { Footer } from '../components/footer';
-import {useState } from 'react';
+import {useCallback, useEffect, useState } from 'react';
 import { Work } from '../components/work';
 import { Contact } from '../components/contact';
 import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
@@ -47,19 +47,21 @@ export function Main() {
     controls[0]!.lastChild!.click();
   }
 
-  function checkKey(e: any) {
+  const checkKey = useCallback((e: any) => {
     e = e || window.event;
     e.preventDefault();
-    // eslint-disable-next-line
-    if (e.keyCode == '38') {
+    if (e.keyCode === '38')
       prevSlide();
-    }
-    // eslint-disable-next-line
-    else if (e.keyCode == '40') {
+    else if (e.keyCode === '40')
       nextSlide();
-    }
-}
-  document.onkeydown = checkKey;
+  }, []);
+
+  useEffect(()=>{
+    document.addEventListener('keydown', checkKey);
+    return () => {
+      document.removeEventListener('keydown', checkKey);
+    };
+  },[checkKey]);
 
   function beforeChange(e: any) {
     //{from: 0, to: 1}
