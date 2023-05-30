@@ -14,7 +14,6 @@ const Container = styled.footer`
   user-select: auto !important;
   >nav{
     padding: 0 2em;
-
   }
 `;
 

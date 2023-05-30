@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Card } from './card';
 import Slider from "react-slick";
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
 
 const Container = styled.section<{ isLandscape: boolean }>`
@@ -51,6 +51,8 @@ const items = [
   { id: 2, title: "Aquila fortis", tags: ["Angular", "Arduino", "MySQL", "Java"], desc: "Real time monitored innovative transportation system for blood products, organs and biological materials", url: "https://github.com/ruben69695/aquilafortis" },
   { id: 3, title: "Hungry crossing", tags: ["Java", "MySQL", "PHP"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
   { id: 4, title: "Go class", tags: ["React", "CSS", "Typescript", ".Net", "PostgreSQL"], desc: "Virtual classroom used by GoStudent and Classgap" },
+  { id: 5, title: "Classgap", tags: ["HTML", "CSS", "Typescript", ".Net", "MongoDB"], desc: "Market place for finding tutors", url: "https://www.classgap.com" },
+  { id: 6, title: "Classgap for enterprise", tags: ["React", "Javascript", ".Net", "MongoDB"], desc: "Online classes for companies", url: "https://enterprise.classgap.com" },
 ];
 
 export function Work() {
@@ -60,6 +62,34 @@ export function Work() {
     <Card key={item.id} title={item.title} desc={item.desc} tags={item.tags} url={item.url} />
   ));
 
+  function clickPrev(){
+    var controls = document.getElementsByClassName("slick-prev")
+    //@ts-ignore
+    controls[0]!.click();
+  }
+  
+  function clickNext(){
+    var controls = document.getElementsByClassName("slick-next");
+    //@ts-ignore
+    controls[0]!.click();
+  }
+
+  const checkKey = useCallback((e: any) => {
+    e = e || window.event;
+    e.preventDefault();
+    if (e.keyCode == '37')
+      clickPrev();
+    else if (e.keyCode == '39')
+      clickNext();
+  }, []);
+  
+  useEffect(()=>{
+    document.addEventListener('keydown', checkKey);
+     return () => {
+       document.removeEventListener('keydown', checkKey);
+     };
+   },[checkKey]);
+ 
   const settings = {
     dots: true,
     infinite: true,
