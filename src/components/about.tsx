@@ -90,6 +90,7 @@ export function About() {
           <List>
             <Tag>React</Tag>
             <Tag>.Net</Tag>
+            <Tag>Node.js</Tag>
             <Tag>MongoDB</Tag>
             <Tag>PostgreSQL</Tag>
             <Tag>Typescript</Tag>
@@ -98,7 +99,6 @@ export function About() {
             <Tag>CSS</Tag>
             <Tag>Git</Tag>
             <Tag>Github</Tag>
-            <Tag>Object-oriented programming</Tag>
           </List>
         </Tags>
       </Body>
