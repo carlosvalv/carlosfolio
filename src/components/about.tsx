@@ -81,9 +81,8 @@ export function About() {
       <Title>About</Title>
       <Body>
         <Descriptions>
-          <Desc bold={false}>As a highly motivated full stack engineer, I have a passion for development and the thrill of overcoming big technical challenges.
-            With a strong understanding of both front-end and back-end technologies. I am driven to create high-quality software that makes a difference.</Desc>
-          <Desc bold={true}>I am always seeking new opportunities to further my skills and work on impactful projects that drive innovation and make a positive impact.</Desc>
+          <Desc bold={false}>Highly motivated full-stack engineer with a passion for development and a track record of overcoming significant technical challenges. Possessing a strong understanding of both front-end and back-end technologies, I am driven to create high-quality software solutions that have a meaningful impact.</Desc>
+          <Desc bold={true}>Constantly seeking new opportunities to expand my skills, I actively pursue projects that drive innovation and make a positive difference.</Desc>
         </Descriptions>
         <Tags>
           <TagsTitle>Skills & Technologies</TagsTitle>
