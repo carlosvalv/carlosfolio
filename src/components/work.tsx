@@ -49,10 +49,11 @@ const Title = styled.h2`
 const items = [
   { id: 1, title: "My own website", tags: ["React", "CSS", "Typescript"], desc: "This is my personal portfolio, where I showcase my work and projects", url: "https://github.com/carlosvalv/carlosfolio" },
   { id: 2, title: "Aquila fortis", tags: ["Angular", "Arduino", "MySQL", "Java"], desc: "Real time monitored innovative transportation system for blood products, organs and biological materials", url: "https://github.com/ruben69695/aquilafortis" },
-  { id: 3, title: "Hungry crossing", tags: ["Java", "MySQL", "PHP"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
-  { id: 4, title: "Go class", tags: ["React", "Node.js", "Typescript", ".Net", "PostgreSQL"], desc: "Virtual classroom used by GoStudent and Classgap" },
-  { id: 5, title: "Classgap", tags: ["HTML", "CSS", "Typescript", ".Net", "MongoDB"], desc: "Market place for finding tutors", url: "https://www.classgap.com" },
-  { id: 6, title: "Classgap for enterprise", tags: ["React", "Javascript", ".Net", "MongoDB"], desc: "Online classes for companies", url: "https://enterprise.classgap.com" },
+  // { id: 3, title: "Hungry crossing", tags: ["Java", "MySQL", "PHP"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
+  { id: 3, title: "Go class", tags: ["React", "Node.js", "Typescript", ".Net", "PostgreSQL"], desc: "Virtual classroom used by GoStudent and Classgap", url: "https://demo.class.classgap.com/" },
+  { id: 4, title: "Classgap", tags: ["Html", "CSS", "Typescript", ".Net", "MongoDB"], desc: "Market place for finding tutors", url: "https://www.classgap.com" },
+  { id: 5, title: "Classgap for enterprise", tags: ["React", "Javascript", ".Net", "MongoDB"], desc: "Online classes for companies", url: "https://enterprise.classgap.com" },
+  { id: 6, title: "Tusclasesparticulares", tags: ["SQL", "Javascript", ".Net", "MongoDB"], desc: "The largest tutoring search portal in Spain", url: "https://www.tusclasesparticulares.com" },
 ];
 
 export function Work() {

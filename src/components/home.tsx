@@ -51,7 +51,7 @@ export function Home() {
       <Left>
         <span>Hi, my name is</span>
         <Title>Carlos Valverde</Title>
-        <Desc>I'm a software developer specialized in both Front and Back with a strong understanding of both.</Desc>
+        <Desc>Software developer specialized in both Front and Back with a strong understanding of both.</Desc>
       </Left>
       <Right><Img src='/imgs/me.jpg' /></Right>
     </Container>
