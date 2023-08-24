@@ -78,9 +78,9 @@ export function Work() {
   const checkKey = useCallback((e: any) => {
     e = e || window.event;
     e.preventDefault();
-    if (e.keyCode == '37')
+    if (e.keyCode === 37)
       clickPrev();
-    else if (e.keyCode == '39')
+    else if (e.keyCode === 39)
       clickNext();
   }, []);
   

@@ -33,7 +33,10 @@ const SlideContainer = styled.main<{isLandscape: boolean}>`
 `;
 
 export function Main() {
-  const [selected, setSelected] = useState<number>(0);
+  const [selected, setSelected] = useState<number>(1);
+  const [dicPages] = useState({0: "#home", 1: "#about", 2: "#work", 3: "#contact"});
+  const [initSlide] = useState(window.location.hash ?  +Object.keys(dicPages).find(key => dicPages[key] === window.location.hash)! : 0);
+  const [duration, setDuration] = useState(250);
 
   function prevSlide(){
     var controls = document.getElementsByClassName("controls");
@@ -50,9 +53,9 @@ export function Main() {
   const checkKey = useCallback((e: any) => {
     e = e || window.event;
     e.preventDefault();
-    if (e.keyCode === '38')
+    if (e.keyCode === 38)
       prevSlide();
-    else if (e.keyCode === '40')
+    else if (e.keyCode === 40)
       nextSlide();
   }, []);
 
@@ -66,29 +69,14 @@ export function Main() {
   function beforeChange(e: any) {
     //{from: 0, to: 1}
     setSelected(e.to);
-    let urlName = "";
-    switch (e.to) {
-      case (0):
-        urlName = "#home";
-        break;
-      case (1):
-        urlName = "#about";
-        break;
-      case (2):
-        urlName = "#work";
-        break;
-      case (3):
-        urlName = "#contact";
-        break;
-    }
-    
-    window.history.replaceState(null, "", urlName)
+    window.history.replaceState(null, "", dicPages[e.to])
+    setDuration(400);
   }
 
   return (
     <Container>
       <Header selected={selected}/>
-      <FullPage duration={100} controls beforeChange={beforeChange} controlsProps={{className: 'controls'}}>
+      <FullPage duration={duration} controls beforeChange={beforeChange} controlsProps={{className: 'controls'}} initialSlide={initSlide}>
         <Slide>
           <SlideContainer id={"home"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><Home/></SlideContainer>
         </Slide>
