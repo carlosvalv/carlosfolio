@@ -37,6 +37,7 @@ export function Main() {
   const [dicPages] = useState({0: "#home", 1: "#about", 2: "#work", 3: "#contact"});
   const [initSlide] = useState(window.location.hash ?  +Object.keys(dicPages).find(key => dicPages[key] === window.location.hash)! : 0);
   const [duration, setDuration] = useState(250);
+  const { isLandscape } = useMobileOrientation()
 
   function prevSlide(){
     var controls = document.getElementsByClassName("controls");
@@ -72,22 +73,25 @@ export function Main() {
     window.history.replaceState(null, "", dicPages[e.to])
     setDuration(400);
   }
+  useEffect(()=>{
+    document.getElementById("header-"+Object.keys(dicPages).find(key => dicPages[key] === window.location.hash)!)?.click();
+  },[isLandscape, dicPages])
 
   return (
     <Container>
       <Header selected={selected}/>
       <FullPage duration={duration} controls beforeChange={beforeChange} controlsProps={{className: 'controls'}} initialSlide={initSlide}>
         <Slide>
-          <SlideContainer id={"home"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><Home/></SlideContainer>
+          <SlideContainer id={"home"} isLandscape={isLandscape && isMobile && !isTablet}><Home/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"about"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><About/></SlideContainer>
+          <SlideContainer id={"about"} isLandscape={isLandscape && isMobile && !isTablet}><About/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"work"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><Work/></SlideContainer>
+          <SlideContainer id={"work"} isLandscape={isLandscape && isMobile && !isTablet}><Work/></SlideContainer>
         </Slide>
         <Slide>
-          <SlideContainer id={"contact"} isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}><Contact/></SlideContainer>
+          <SlideContainer id={"contact"} isLandscape={isLandscape && isMobile && !isTablet}><Contact/></SlideContainer>
         </Slide>
       </FullPage>
       {selected !== 3 && <Footer/>}
