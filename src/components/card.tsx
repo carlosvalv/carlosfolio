@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
 import styled from 'styled-components';
 
@@ -69,16 +69,22 @@ type CardProps = {
 }
 
 export function Card(props: CardProps) {
-  const [isLandscape] = useState<boolean>(useMobileOrientation().isLandscape && isMobile && !isTablet);
+  const { isLandscape } = useMobileOrientation()
+  const [isLandscapeMobile, setIsLandscapeMobile] = useState<boolean>(isLandscape && isMobile && !isTablet);
+
+  useEffect(()=>{
+    setIsLandscapeMobile(isLandscape && isMobile && !isTablet)
+  },[isLandscape])
+
   return (
-    <Container isLandscape={isLandscape}>
+    <Container isLandscape={isLandscapeMobile}>
       <TitleCard>{props.title}</TitleCard>
       <Tags>
         {props.tags.map((tag: string) => {
           return <Tag key={tag}>{tag}</Tag>
         })}
       </Tags>
-      <Desc isLandscape={isLandscape}>{props.desc}</Desc>
+      <Desc isLandscape={isLandscapeMobile}>{props.desc}</Desc>
       {!isLandscape && props.url &&
         <Footer>
           <Link target='_blank' rel={"noreferrer"} href={props.url}>View Project</Link>
