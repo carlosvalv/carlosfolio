@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import { isMobile, isTablet, useMobileOrientation } from "react-device-detect";
+import styled from "styled-components";
 
 const Container = styled.div<{ isLandscape: boolean }>`
   width: 200px;
+  align-items: center;
   height: calc(100% - 28px);
   min-width: 200px;
   ${props => !props.isLandscape && "min-height: 260px"};
@@ -14,6 +15,12 @@ const Container = styled.div<{ isLandscape: boolean }>`
   display: flex;
   flex-direction: column;
   margin: auto;
+  transform: scale(0.9);
+  transition: transform .3s ease;
+  cursor: pointer;
+  :hover {
+    transform: scale(1);
+  }
 `;
 
 const TitleCard = styled.h4`
@@ -21,8 +28,9 @@ const TitleCard = styled.h4`
   text-align: center;
   margin: 0;
   font-weight: 500;
-  border-bottom: 1px solid;
+  border-bottom: .5px solid;
   padding-bottom: 12px;
+  font-size: 16px;
 `;
 
 const Tags = styled.div`
@@ -43,7 +51,7 @@ const Tag = styled.span`
 
 const Desc = styled.p<{ isLandscape: boolean }>`
   color: #fff;
-  font-size: ${props=> props.isLandscape ? "1vmax" : "0.875em"};
+  font-size: ${(props) => (props.isLandscape ? "1vmax" : "0.875em")};
 `;
 
 const Footer = styled.div`
@@ -54,7 +62,7 @@ const Footer = styled.div`
 `;
 
 const Link = styled.a`
-  color: #2F2F2F;
+  color: #2f2f2f;
   text-decoration: none;
   width: calc(100% - 12px);
   display: block;
@@ -62,34 +70,43 @@ const Link = styled.a`
 `;
 
 type CardProps = {
-  title: string,
-  tags: string[],
-  desc: string,
-  url?: string
-}
+  title: string;
+  tags: string[];
+  desc: string;
+  url?: string;
+};
 
 export function Card(props: CardProps) {
-  const { isLandscape } = useMobileOrientation()
-  const [isLandscapeMobile, setIsLandscapeMobile] = useState<boolean>(isLandscape && isMobile && !isTablet);
+  const { isLandscape } = useMobileOrientation();
+  const [isLandscapeMobile, setIsLandscapeMobile] = useState<boolean>(
+    isLandscape && isMobile && !isTablet
+  );
+  const { url, title } = props;
 
-  useEffect(()=>{
-    setIsLandscapeMobile(isLandscape && isMobile && !isTablet)
-  },[isLandscape])
+  const onClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>{
+    window.open(url, '_blank');
+  } 
+
+  useEffect(() => {
+    setIsLandscapeMobile(isLandscape && isMobile && !isTablet);
+  }, [isLandscape]);
 
   return (
-    <Container isLandscape={isLandscapeMobile}>
-      <TitleCard>{props.title}</TitleCard>
+    <Container isLandscape={isLandscapeMobile} onClick={(e) => onClick(e)}>
+      <TitleCard>{title}</TitleCard>
       <Tags>
         {props.tags.map((tag: string) => {
-          return <Tag key={tag}>{tag}</Tag>
+          return <Tag key={tag}>{tag}</Tag>;
         })}
       </Tags>
       <Desc isLandscape={isLandscapeMobile}>{props.desc}</Desc>
-      {!isLandscape && props.url &&
+      {!isLandscapeMobile && url && (
         <Footer>
-          <Link target='_blank' rel={"noreferrer"} href={props.url}>View Project</Link>
+          <Link target="_blank" rel={"noreferrer"} href={props.url}>
+            View Project
+          </Link>
         </Footer>
-      }
+      )}
     </Container>
   );
 }
