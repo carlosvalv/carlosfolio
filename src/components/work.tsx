@@ -33,7 +33,7 @@ const Container = styled.section<{ isLandscape: boolean }>`
     }
   }
   .slick-dots{
-    bottom: -35px;
+    bottom: -60px;
     li button:before{
       color: #2F2F2F
     }
