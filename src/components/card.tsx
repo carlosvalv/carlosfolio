@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
-import { isMobile, isTablet, useMobileOrientation } from "react-device-detect";
+import { useContext } from "react";
+import { isMobile } from "react-device-detect";
 import styled from "styled-components";
+import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
 const Container = styled.div<{ isLandscape: boolean }>`
   width: 200px;
   align-items: center;
   height: calc(100% - 28px);
   min-width: 200px;
-  ${props => !props.isLandscape && "min-height: 260px"};
+  ${(props) => !props.isLandscape && "min-height: 260px"};
   padding: 14px;
   border-radius: 16px;
-  background-color: #2F2F2F;
-  gap: ${props => props.isLandscape ? "0.75em" : "1em"};
+  background-color: #2f2f2f;
+  gap: ${(props) => (props.isLandscape ? "0.75em" : "1em")};
   display: flex;
   flex-direction: column;
   margin: auto;
   transform: scale(0.9);
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
   cursor: pointer;
   :hover {
     transform: scale(1);
@@ -28,7 +29,7 @@ const TitleCard = styled.h4`
   text-align: center;
   margin: 0;
   font-weight: 500;
-  border-bottom: .5px solid;
+  border-bottom: 0.5px solid;
   padding-bottom: 12px;
   font-size: 16px;
 `;
@@ -77,22 +78,15 @@ type CardProps = {
 };
 
 export function Card(props: CardProps) {
-  const { isLandscape } = useMobileOrientation();
-  const [isLandscapeMobile, setIsLandscapeMobile] = useState<boolean>(
-    isLandscape && isMobile && !isTablet
-  );
+  const isLandscapeMobile = useContext(isLandscapeMobileContext);
   const { url, title } = props;
 
-  const onClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>{
-    window.open(url, '_blank');
-  } 
-
-  useEffect(() => {
-    setIsLandscapeMobile(isLandscape && isMobile && !isTablet);
-  }, [isLandscape]);
+  const onClick = () => {
+    window.open(url, "_blank");
+  };
 
   return (
-    <Container isLandscape={isLandscapeMobile} onClick={(e) => onClick(e)}>
+    <Container isLandscape={isLandscapeMobile} onClick={() => onClick()}>
       <TitleCard>{title}</TitleCard>
       <Tags>
         {props.tags.map((tag: string) => {
@@ -100,7 +94,7 @@ export function Card(props: CardProps) {
         })}
       </Tags>
       <Desc isLandscape={isLandscapeMobile}>{props.desc}</Desc>
-      {!isLandscapeMobile && url && (
+      {isMobile && url && (
         <Footer>
           <Link target="_blank" rel={"noreferrer"} href={props.url}>
             View Project

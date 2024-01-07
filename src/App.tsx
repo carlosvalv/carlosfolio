@@ -1,6 +1,8 @@
-import { RouterProvider } from 'react-router';
-import { Main } from './pages/main';
-import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider } from "react-router";
+import { Main } from "./pages/main";
+import { createBrowserRouter } from "react-router-dom";
+import { isMobile, isTablet, useMobileOrientation } from "react-device-detect";
+import { isLandscapeMobileContext } from "./context/landscapeMobile";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +12,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const { isLandscape } = useMobileOrientation();
   return (
-    <RouterProvider router={router} />
+    <isLandscapeMobileContext.Provider value={isLandscape && isMobile && !isTablet}>
+      <RouterProvider router={router} />
+    </isLandscapeMobileContext.Provider>
   );
 }
 
