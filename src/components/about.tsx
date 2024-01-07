@@ -1,5 +1,6 @@
-import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { isLandscapeMobileContext } from '../context/landscapeMobile';
 
 const Container = styled.section<{isLandscape: boolean}>`
   height: 100%;
@@ -76,8 +77,10 @@ const Tag = styled.span`
 `;
 
 export function About() {
+  const isLandscapeMobile = useContext(isLandscapeMobileContext);
+
   return (
-    <Container isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}>
+    <Container isLandscape={isLandscapeMobile}>
       <Title>About</Title>
       <Body>
         <Descriptions>

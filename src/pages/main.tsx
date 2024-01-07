@@ -3,10 +3,10 @@ import { Home } from "../components/home";
 import { Header } from "../components/header";
 import { About } from "../components/about";
 import { Footer } from "../components/footer";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Work } from "../components/work";
 import { Contact } from "../components/contact";
-import { isMobile, isTablet, useMobileOrientation } from "react-device-detect";
+import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
 const Container = styled.div`
   overflow-y: hidden;
@@ -41,28 +41,12 @@ const SlideContainer = styled.div<{ isLandscape: boolean }>`
   color: #2f2f2f;
   scroll-snap-align: center;
 
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-
   @media (max-width: 1000px) {
     padding: 0 40px;
   }
   @media (max-width: 750px) {
     ${(props) => props.isLandscape && "padding: 0 25px;"}
-    ${(props) => props.isLandscape && "height: calc(100%);"}
+    ${(props) => props.isLandscape && "height: 100%;"}
   }
 `;
 
@@ -75,6 +59,7 @@ const dicPages = {
 
 export function Main() {
   const [selected, setSelected] = useState<number>(0);
+  const isLandscapeMobile = useContext(isLandscapeMobileContext);
 
   const [initSlide] = useState(
     window.location.hash
@@ -83,7 +68,7 @@ export function Main() {
         )!
       : 0
   );
-  const { isLandscape } = useMobileOrientation();
+
   const slides = useRef(null);
 
   function scrollTo(page: number) {
@@ -132,28 +117,16 @@ export function Main() {
     <Container>
       <Header selected={selected} />
       <Slides onScroll={(e: any) => onScroll(e)} ref={slides}>
-        <SlideContainer
-          id={"home"}
-          isLandscape={isLandscape && isMobile && !isTablet}
-        >
+        <SlideContainer id={"home"} isLandscape={isLandscapeMobile}>
           <Home />
         </SlideContainer>
-        <SlideContainer
-          id={"about"}
-          isLandscape={isLandscape && isMobile && !isTablet}
-        >
+        <SlideContainer id={"about"} isLandscape={isLandscapeMobile}>
           <About />
         </SlideContainer>
-        <SlideContainer
-          id={"work"}
-          isLandscape={isLandscape && isMobile && !isTablet}
-        >
+        <SlideContainer id={"work"} isLandscape={isLandscapeMobile}>
           <Work />
         </SlideContainer>
-        <SlideContainer
-          id={"contact"}
-          isLandscape={isLandscape && isMobile && !isTablet}
-        >
+        <SlideContainer id={"contact"} isLandscape={isLandscapeMobile}>
           <Contact />
         </SlideContainer>
         {selected !== 3 && <Footer />}

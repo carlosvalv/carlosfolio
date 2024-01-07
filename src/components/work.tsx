@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Card } from './card';
 import Slider from "react-slick";
-import { useCallback, useEffect, useRef } from 'react';
-import { isMobile, isTablet, useMobileOrientation } from 'react-device-detect';
+import { useCallback, useContext, useEffect, useRef } from 'react';
+import { isLandscapeMobileContext } from '../context/landscapeMobile';
 
 const Container = styled.section<{ isLandscape: boolean }>`
   display: flex;
@@ -57,6 +57,7 @@ const items = [
 ];
 
 export function Work() {
+  const isLandscapeMobile = useContext(isLandscapeMobileContext);
   const sliderRef = useRef<any>(null);
 
   const slides = items.map((item) => (
@@ -124,7 +125,7 @@ export function Work() {
   };
 
   return (
-    <Container isLandscape={useMobileOrientation().isLandscape && isMobile && !isTablet}>
+    <Container isLandscape={isLandscapeMobile}>
       <Title>Work</Title>
       <Slider ref={sliderRef} {...settings}>{slides}</Slider>
     </Container>
