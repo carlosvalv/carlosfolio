@@ -91,12 +91,12 @@ export function About() {
           <TagsTitle>Skills & Technologies</TagsTitle>
           <List>
             <Tag>React</Tag>
+            <Tag>Javascript</Tag>
+            <Tag>Typescript</Tag>
             <Tag>.Net</Tag>
             <Tag>Node.js</Tag>
             <Tag>MongoDB</Tag>
             <Tag>PostgreSQL</Tag>
-            <Tag>Typescript</Tag>
-            <Tag>Javascript</Tag>
             <Tag>Html</Tag>
             <Tag>CSS</Tag>
             <Tag>Git</Tag>
