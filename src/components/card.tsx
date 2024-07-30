@@ -4,15 +4,14 @@ import styled from "styled-components";
 import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
 const Container = styled.div<{ isLandscape: boolean }>`
-  width: 200px;
+  width: calc(100% - 28px);
+  max-width: 320px;
   align-items: center;
-  height: calc(100% - 28px);
   min-width: 200px;
-  ${(props) => !props.isLandscape && "min-height: 260px"};
   padding: 14px;
   border-radius: 16px;
   background-color: #2f2f2f;
-  gap: ${(props) => (props.isLandscape ? "0.75em" : "1em")};
+  gap: ${(props) => (props.isLandscape ? "0.75em" : "1.75em")};
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -53,6 +52,7 @@ const Tag = styled.span`
 const Desc = styled.p<{ isLandscape: boolean }>`
   color: #fff;
   font-size: ${(props) => (props.isLandscape ? "1vmax" : "0.875em")};
+  margin: 0;
 `;
 
 const Footer = styled.div`
@@ -75,11 +75,12 @@ type CardProps = {
   tags: string[];
   desc: string;
   url?: string;
+  img?: string;
 };
 
 export function Card(props: CardProps) {
   const isLandscapeMobile = useContext(isLandscapeMobileContext);
-  const { url, title } = props;
+  const { url, title, img } = props;
 
   const onClick = () => {
     window.open(url, "_blank");
@@ -88,11 +89,19 @@ export function Card(props: CardProps) {
   return (
     <Container isLandscape={isLandscapeMobile} onClick={() => onClick()}>
       <TitleCard>{title}</TitleCard>
+      {img && (
+        <img
+          src={`/imgs/projects/${img}`}
+          alt={title}
+          width={2000}
+          style={{ maxWidth: "100%" }}
+        />
+      )}
       <Tags>
         {props.tags.map((tag: string) => {
           return <Tag key={tag}>{tag}</Tag>;
         })}
-      </Tags>
+      </Tags> 
       <Desc isLandscape={isLandscapeMobile}>{props.desc}</Desc>
       {isMobile && url && (
         <Footer>
