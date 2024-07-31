@@ -7,7 +7,7 @@ import { isLandscapeMobileContext } from "../context/landscapeMobile";
 const Container = styled.section<{ isLandscape: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: ${(props) => (props.isLandscape ? "3em" : "5em")};
+  gap: ${(props) => (props.isLandscape ? "3em" : "2.25em")};
   height: 100%;
   justify-content: center;
   .slick-slider {
@@ -29,14 +29,11 @@ const Container = styled.section<{ isLandscape: boolean }>`
     align-items: stretch;
   }
   .slick-slide {
-    //height: auto;
     margin: auto;
-    > div {
-      //height: 100%;
-    }
   }
   .slick-dots {
-    bottom: -60px;
+    bottom: ${(props) => (props.isLandscape ? "-50px" : "-15px")};
+
     li button:before {
       color: #2f2f2f;
     }
@@ -66,13 +63,13 @@ const items = [
     url: "https://demo.class.classgap.com/",
     img: "goclass.png",
   },
-  {
-    id: 2,
-    title: "Aquila fortis",
-    tags: ["Angular", "Arduino", "MySQL", "Java"],
-    desc: "Real time monitored innovative transportation system for blood products, organs and biological materials",
-    url: "https://github.com/ruben69695/aquilafortis",
-  },
+  // {
+  //   id: 2,
+  //   title: "Aquila fortis",
+  //   tags: ["Angular", "Arduino", "MySQL", "Java"],
+  //   desc: "Real time monitored innovative transportation system for blood products, organs and biological materials",
+  //   url: "https://github.com/ruben69695/aquilafortis",
+  // },
   // { id: 3, title: "Hungry crossing", tags: ["Java", "MySQL", "PHP"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
 
   {
@@ -81,6 +78,7 @@ const items = [
     tags: ["Html", "CSS", "Typescript", ".Net", "MongoDB"],
     desc: "Online tutor marketplace",
     url: "https://www.classgap.com",
+    img: "classgap.png",
   },
   // {
   //   id: 5,
@@ -95,6 +93,7 @@ const items = [
     tags: ["SQL", "Javascript", ".Net", "MongoDB"],
     desc: "The largest tutoring search portal in Spain",
     url: "https://www.tusclasesparticulares.com",
+    img: "tusclasesparticulares.png",
   },
   {
     id: 1,
@@ -102,6 +101,7 @@ const items = [
     tags: ["React", "CSS", "Typescript"],
     desc: "This is my personal portfolio, where I showcase my work and projects",
     url: "https://github.com/carlosvalv/carlosfolio",
+    img: "carlosfolio.png",
   },
 ];
 
@@ -150,8 +150,8 @@ export function Work() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     arrows: true,
     draggable: false, // deshabilita el cambio de slide por drag
     focusOnSelect: false, // deshabilita el foco al seleccionar un slide
@@ -162,7 +162,7 @@ export function Work() {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
