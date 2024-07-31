@@ -42,7 +42,7 @@ const SlideContainer = styled.div<{ isLandscape: boolean }>`
   scroll-snap-align: center;
 
   @media (max-width: 1000px) {
-    padding: 0 40px;
+    padding: 0 25px;
   }
   @media (max-width: 750px) {
     ${(props) => props.isLandscape && "padding: 0 25px;"}
