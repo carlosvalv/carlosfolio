@@ -1,0 +1,60 @@
+export const works = [
+  {
+    title: "Taskflow",
+    tags: ["React", "Typescript", "Redux"],
+    desc: "Organize your tasks",
+    img: "taskflow.png",
+    url: "https://carlosvalv.github.io/trello-clone/",
+  },
+  {
+    title: "Go class",
+    tags: ["React", "Node.js", "Typescript", ".Net", "PostgreSQL"],
+    desc: "Virtual classroom used by GoStudent and Classgap",
+    url: "https://demo.class.classgap.com/",
+    img: "goclass.png",
+  },
+  {
+    title: "CSS Generator",
+    tags: ["React", "Typescript", "CSS"],
+    desc: "Effortlessly generate CSS for your projects.",
+    url: "https://carlosvalv.github.io/css-generator/ ",
+    img: "cssgenerator.png",
+  },
+  // {
+  //   id: 2,
+  //   title: "Aquila fortis",
+  //   tags: ["Angular", "Arduino", "MySQL", "Java"],
+  //   desc: "Real time monitored innovative transportation system for blood products, organs and biological materials",
+  //   url: "https://github.com/ruben69695/aquilafortis",
+  // },
+  // { id: 3, title: "Hungry crossing", tags: ["Java", "MySQL", "PHP"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
+
+  {
+    title: "Classgap",
+    tags: ["Html", "CSS", "Typescript", ".Net", "MongoDB"],
+    desc: "Online tutor marketplace",
+    url: "https://www.classgap.com",
+    img: "classgap.png",
+  },
+  // {
+  //   id: 5,
+  //   title: "Classgap for enterprise",
+  //   tags: ["React", "Javascript", ".Net", "MongoDB"],
+  //   desc: "Online classes for companies",
+  //   url: "https://enterprise.classgap.com",
+  // },
+  {
+    title: "Tusclasesparticulares",
+    tags: ["SQL", "Javascript", ".Net", "MongoDB"],
+    desc: "The largest tutoring search portal in Spain",
+    url: "https://www.tusclasesparticulares.com",
+    img: "tusclasesparticulares.png",
+  },
+  {
+    title: "My own website",
+    tags: ["React", "CSS", "Typescript"],
+    desc: "This is my personal portfolio, where I showcase my work and projects",
+    url: "https://github.com/carlosvalv/carlosfolio",
+    img: "carlosfolio.png",
+  },
+];

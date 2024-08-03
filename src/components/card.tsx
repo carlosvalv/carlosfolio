@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import { isLandscapeMobileContext } from "../context/landscapeMobile";
 

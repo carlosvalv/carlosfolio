@@ -3,6 +3,7 @@ import { Card } from "./card";
 import Slider from "react-slick";
 import { useCallback, useContext, useEffect, useRef } from "react";
 import { isLandscapeMobileContext } from "../context/landscapeMobile";
+import { works } from "../constants/works";
 
 const Container = styled.section<{ isLandscape: boolean }>`
   display: flex;
@@ -46,72 +47,13 @@ const Title = styled.h2`
   text-align: center;
 `;
 
-const items = [
-  {
-    id: 7,
-    title: "Taskflow",
-    tags: ["React", "Typescript", "Redux"],
-    desc: "Organize your tasks",
-    img: "taskflow.png",
-    url: "https://carlosvalv.github.io/trello-clone/",
-  },
-  {
-    id: 3,
-    title: "Go class",
-    tags: ["React", "Node.js", "Typescript", ".Net", "PostgreSQL"],
-    desc: "Virtual classroom used by GoStudent and Classgap",
-    url: "https://demo.class.classgap.com/",
-    img: "goclass.png",
-  },
-  // {
-  //   id: 2,
-  //   title: "Aquila fortis",
-  //   tags: ["Angular", "Arduino", "MySQL", "Java"],
-  //   desc: "Real time monitored innovative transportation system for blood products, organs and biological materials",
-  //   url: "https://github.com/ruben69695/aquilafortis",
-  // },
-  // { id: 3, title: "Hungry crossing", tags: ["Java", "MySQL", "PHP"], desc: "Android application to search for restaurants", url: "https://github.com/carlosvalv/android_hungrycrossing" },
-
-  {
-    id: 4,
-    title: "Classgap",
-    tags: ["Html", "CSS", "Typescript", ".Net", "MongoDB"],
-    desc: "Online tutor marketplace",
-    url: "https://www.classgap.com",
-    img: "classgap.png",
-  },
-  // {
-  //   id: 5,
-  //   title: "Classgap for enterprise",
-  //   tags: ["React", "Javascript", ".Net", "MongoDB"],
-  //   desc: "Online classes for companies",
-  //   url: "https://enterprise.classgap.com",
-  // },
-  {
-    id: 6,
-    title: "Tusclasesparticulares",
-    tags: ["SQL", "Javascript", ".Net", "MongoDB"],
-    desc: "The largest tutoring search portal in Spain",
-    url: "https://www.tusclasesparticulares.com",
-    img: "tusclasesparticulares.png",
-  },
-  {
-    id: 1,
-    title: "My own website",
-    tags: ["React", "CSS", "Typescript"],
-    desc: "This is my personal portfolio, where I showcase my work and projects",
-    url: "https://github.com/carlosvalv/carlosfolio",
-    img: "carlosfolio.png",
-  },
-];
-
 export function Work() {
   const isLandscapeMobile = useContext(isLandscapeMobileContext);
   const sliderRef = useRef<any>(null);
 
-  const slides = items.map((item) => (
+  const slides = works.map((item, index) => (
     <Card
-      key={item.id}
+      key={index}
       title={item.title}
       desc={item.desc}
       tags={item.tags}
