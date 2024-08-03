@@ -4,7 +4,7 @@ import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
 const Container = styled.div<{ isLandscape: boolean }>`
   width: calc(100% - 28px);
-  max-width: 320px;
+  max-width: 500px;
   align-items: center;
   min-width: 200px;
   padding: 14px;
@@ -102,13 +102,13 @@ export function Card(props: CardProps) {
         })}
       </Tags> 
       <Desc isLandscape={isLandscapeMobile}>{props.desc}</Desc>
-      {isMobile && url && (
+      {/* {isMobile && url && (
         <Footer>
           <Link target="_blank" rel={"noreferrer"} href={props.url}>
             View Project
           </Link>
         </Footer>
-      )}
+      )} */}
     </Container>
   );
 }
