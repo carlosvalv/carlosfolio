@@ -8,7 +8,7 @@ import { works } from "../constants/works";
 const Container = styled.section<{ isLandscape: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: ${(props) => (props.isLandscape ? "3em" : "2.25em")};
+  gap: ${(props) => (props.isLandscape ? "2.5em" : "2.25em")};
   height: 100%;
   justify-content: center;
   .slick-slider {
