@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
 const Container = styled.div<{ isLandscape: boolean }>`
-  width: calc(100% - 28px);
+  width: ${(props) =>
+    props.isLandscape ? "fit-content" : "calc(100% - 28px)"};
   max-width: 500px;
   align-items: center;
   min-width: 200px;
@@ -92,15 +93,18 @@ export function Card(props: CardProps) {
         <img
           src={`/imgs/projects/${img}`}
           alt={title}
-          width={2000}
-          style={{ maxWidth: "100%" }}
+          style={{
+            maxWidth: "100%",
+            maxHeight: isLandscapeMobile ? 125 : "",
+             display: isLandscapeMobile ? "none" : "inherit  ",
+          }}
         />
       )}
       <Tags>
         {props.tags.map((tag: string) => {
           return <Tag key={tag}>{tag}</Tag>;
         })}
-      </Tags> 
+      </Tags>
       <Desc isLandscape={isLandscapeMobile}>{props.desc}</Desc>
       {/* {isMobile && url && (
         <Footer>
