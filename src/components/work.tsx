@@ -27,13 +27,20 @@ const Container = styled.section<{ isLandscape: boolean }>`
   }
   .slick-track {
     display: flex;
-    align-items: stretch;
+    align-items: center;
   }
   .slick-slide {
+    padding-top: 15px;
+    padding: 0 10px;
+    box-sizing: border-box;
+
     margin: auto;
+    @media (max-width: 1000px) {
+      padding-top: 0;
+    }
   }
   .slick-dots {
-    bottom: ${(props) => (props.isLandscape ? "-50px" : "-15px")};
+    bottom: ${(props) => (props.isLandscape ? "-50px" : "-25px")};
 
     li button:before {
       color: #2f2f2f;
@@ -92,17 +99,17 @@ export function Work() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 2,
     slidesToScroll: 1,
     arrows: true,
-    draggable: false, // deshabilita el cambio de slide por drag
-    focusOnSelect: false, // deshabilita el foco al seleccionar un slide
-    swipe: false,
-    autoplay: false, // habilita el cambio automático de los slides
-    autoplaySpeed: 3000, // establece el intervalo de cambio automático de los slides en 5 segundos
+    draggable: true,
+    focusOnSelect: false,
+    swipe: true,
+    autoplay: false,
+    autoplaySpeed: 3000, 
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1300,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -114,7 +121,7 @@ export function Work() {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
-          centerPadding: "25px", // ajusta el padding para que las flechas no queden tan a los lados
+          centerPadding: "25px",
         },
       },
     ],

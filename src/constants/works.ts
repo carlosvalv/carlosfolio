@@ -8,7 +8,7 @@ export const works = [
   },
   {
     title: "Go class",
-    tags: ["React", "Node.js", "Typescript", ".Net", "PostgreSQL"],
+    tags: ["React", "Node.js", ".Net", "PostgreSQL"],
     desc: "Virtual classroom used by GoStudent and Classgap",
     url: "https://demo.class.classgap.com/",
     img: "goclass.png",
