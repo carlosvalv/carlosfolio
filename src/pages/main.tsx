@@ -9,7 +9,9 @@ import { Contact } from "../components/contact";
 import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
 const Container = styled.div`
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
+  overflow-y: auto;
+  /* height: 100vh; */
 `;
 
 const Slides = styled.div`
@@ -17,7 +19,6 @@ const Slides = styled.div`
   overscroll-behavior-y: contain;
   scroll-snap-type: y mandatory;
   overflow-y: auto;
-
   &::-webkit-scrollbar {
     width: 10px;
   }
@@ -39,10 +40,11 @@ const SlideContainer = styled.div<{ isLandscape: boolean }>`
   height: 100vh;
   background: #ffffff;
   color: #2f2f2f;
-  scroll-snap-align: center;
+  /* scroll-snap-align: center; */
+  scroll-snap-align: start;
 
   @media (max-width: 1000px) {
-    padding: 0 25px;
+    padding: 0 15px;
   }
   @media (max-width: 750px) {
     ${(props) => props.isLandscape && "padding: 0 25px;"}
@@ -68,12 +70,10 @@ export function Main() {
         )!
       : 0
   );
-
-  const slides = useRef(null);
-
+  const slides = useRef<HTMLDivElement>(null);
   function scrollTo(page: number) {
     let doc = document.getElementById(dicPages[page].split("#")[1]);
-    //@ts-ignore
+    if (!doc || !slides || !slides.current) return;
     slides.current.scrollTo(0, doc.offsetTop);
   }
 
@@ -108,9 +108,7 @@ export function Main() {
 
   useEffect(() => {
     setSelected(initSlide);
-    let doc = document.getElementById(dicPages[initSlide].split("#")[1]);
-    //@ts-ignore
-    slides.current.scrollTo(0, doc.offsetTop);
+    scrollTo(initSlide);
   }, [initSlide]);
 
   return (
