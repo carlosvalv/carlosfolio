@@ -11,6 +11,9 @@ const Container = styled.section<{ isLandscape: boolean }>`
   gap: ${(props) => (props.isLandscape ? "2.5em" : "2.25em")};
   height: 100%;
   justify-content: center;
+  .slick-list{
+    padding-top: 20px;
+  }
   .slick-slider {
     width: 90%;
     margin: 0 auto;
@@ -106,7 +109,7 @@ export function Work() {
     focusOnSelect: false,
     swipe: true,
     autoplay: false,
-    autoplaySpeed: 3000, 
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 1300,
@@ -130,7 +133,10 @@ export function Work() {
   return (
     <Container isLandscape={isLandscapeMobile}>
       <Title>Work</Title>
-      <Slider ref={sliderRef} {...settings}>
+      <Slider
+        ref={sliderRef}
+        {...settings}
+      >
         {slides}
       </Slider>
     </Container>

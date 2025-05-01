@@ -1,9 +1,8 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import styled from "styled-components";
 import { isLandscapeMobileContext } from "../context/landscapeMobile";
 const Container = styled.div<{ isLandscape: boolean }>`
-  width: ${(props) =>
-    props.isLandscape ? "fit-content" : "auto"};
+  width: ${(props) => (props.isLandscape ? "fit-content" : "auto")};
   max-width: 500px;
   min-width: 200px;
   padding: 16px;
@@ -95,13 +94,37 @@ type CardProps = {
 export function Card(props: CardProps) {
   const isLandscapeMobile = useContext(isLandscapeMobileContext);
   const { url, title, img } = props;
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const startY = useRef(0);
 
   const onClick = () => {
+    if (isDragging.current) return;
     window.open(url, "_blank");
   };
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    startX.current = e.clientX;
+    startY.current = e.clientY;
+    isDragging.current = false;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (
+      Math.abs(e.clientX - startX.current) > 5 ||
+      Math.abs(e.clientY - startY.current) > 5
+    ) {
+      isDragging.current = true;
+    }
+  };
+
   return (
-    <Container isLandscape={isLandscapeMobile} onClick={() => onClick()}>
+    <Container
+      isLandscape={isLandscapeMobile}
+      onClick={() => onClick()}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+    >
       <TitleCard>{title}</TitleCard>
       {img && (
         <img
