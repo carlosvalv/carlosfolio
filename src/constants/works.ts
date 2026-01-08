@@ -1,5 +1,12 @@
 export const works = [
   {
+    title: "Investatrack",
+    tags: ["React", "Typescript", "Redux", "Supabase"],
+    desc: "Don't worry about your income organization",
+    img: "investatrack.png",
+    url: "https://investa-track.netlify.app/",
+  },
+  {
     title: "Taskflow",
     tags: ["React", "Typescript", "Redux"],
     desc: "Organize your tasks",

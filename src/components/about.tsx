@@ -1,22 +1,22 @@
-import { useContext } from 'react';
-import styled from 'styled-components';
-import { isLandscapeMobileContext } from '../context/landscapeMobile';
+import { useContext } from "react";
+import styled from "styled-components";
+import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
-const Container = styled.section<{isLandscape: boolean}>`
+const Container = styled.section<{ isLandscape: boolean }>`
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${props=>props.isLandscape ? "4em" : "5em"};
+  gap: ${(props) => (props.isLandscape ? "4em" : "5em")};
   justify-content: center;
-  
+
   @media (max-width: 750px) {
     gap: 3em;
   }
 `;
 
 const Title = styled.h2`
-  font-size: 5.5vmax; 
+  font-size: 5.5vmax;
   margin: 0;
 `;
 
@@ -38,15 +38,15 @@ const Descriptions = styled.div`
   margin-top: 0;
 `;
 
-const Desc = styled.p<{bold: boolean}>`
+const Desc = styled.p<{ bold: boolean }>`
   line-height: 1.5;
   font-size: 2vh;
   margin-top: 0;
-  font-weight: ${props=> props.bold ? 700 : 200};
+  font-weight: ${(props) => (props.bold ? 700 : 200)};
 `;
 
 const Tags = styled.div`
-  flex:2;
+  flex: 2;
 `;
 
 const List = styled.div`
@@ -62,12 +62,12 @@ const TagsTitle = styled.h2`
 `;
 
 const Tag = styled.span`
-  background: #2F2F2F;
+  background: #2f2f2f;
   border-radius: 25px;
   padding: 5px 10px;
   font-size: 2vh;
   color: #fff;
-  
+
   @media (max-width: 750px) {
     max-width: 150px;
     white-space: nowrap;
@@ -84,8 +84,18 @@ export function About() {
       <Title>About</Title>
       <Body>
         <Descriptions>
-          <Desc bold={false}>Highly motivated full-stack engineer with a passion for development and a track record of overcoming significant technical challenges. Possessing a strong understanding of both front-end and back-end technologies, I am driven to create high-quality software solutions that have a meaningful impact.</Desc>
-          <Desc bold={true}>Constantly seeking new opportunities to expand my skills, I actively pursue projects that drive innovation and make a positive difference.</Desc>
+          <Desc bold={false}>
+            Highly motivated frontend engineer with a passion for development
+            and a track record of overcoming significant technical challenges.
+            Possessing a strong understanding of both front-end and back-end
+            technologies, I am driven to create high-quality software solutions
+            that have a meaningful impact.
+          </Desc>
+          <Desc bold={true}>
+            Constantly seeking new opportunities to expand my skills, I actively
+            pursue projects that drive innovation and make a positive
+            difference.
+          </Desc>
         </Descriptions>
         <Tags>
           <TagsTitle>Skills & Technologies</TagsTitle>
@@ -93,12 +103,13 @@ export function About() {
             <Tag>React</Tag>
             <Tag>Javascript</Tag>
             <Tag>Typescript</Tag>
-            <Tag>.Net</Tag>
+            <Tag>Tailwind</Tag>
+            <Tag>Storybook</Tag>
             <Tag>Node.js</Tag>
             <Tag>MongoDB</Tag>
             <Tag>PostgreSQL</Tag>
             <Tag>Html</Tag>
-            <Tag>CSS</Tag>
+            <Tag>Scss</Tag>
             <Tag>Git</Tag>
             <Tag>Github</Tag>
           </List>
