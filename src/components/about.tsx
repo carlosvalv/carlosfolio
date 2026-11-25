@@ -1,119 +1,106 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
-const Container = styled.section<{ isLandscape: boolean }>`
-  height: 100%;
+const Container = styled.section`
+  width: min(100%, 1040px);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: ${(props) => (props.isLandscape ? "4em" : "5em")};
   justify-content: center;
+  gap: 2rem;
+  padding: 6rem 0 4rem;
+`;
 
-  @media (max-width: 750px) {
-    gap: 3em;
-  }
+const Eyebrow = styled.p`
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 `;
 
 const Title = styled.h2`
-  font-size: 5.5vmax;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
   margin: 0;
 `;
 
 const Body = styled.div`
-  display: flex;
-  gap: 2em;
-  margin: 0 9%;
-
-  @media (max-width: 1000px) {
-    flex-direction: column;
-  }
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
   @media (max-width: 750px) {
-    margin: 0;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 `;
 
-const Descriptions = styled.div`
-  flex: 3;
-  margin-top: 0;
+const Copy = styled.div`
+  p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin: 0 0 1rem;
+  }
 `;
 
-const Desc = styled.p<{ bold: boolean }>`
-  line-height: 1.5;
-  font-size: 2vh;
-  margin-top: 0;
-  font-weight: ${(props) => (props.bold ? 700 : 200)};
+const SkillGroups = styled.div`
+  display: grid;
+  gap: 1.25rem;
 `;
 
-const Tags = styled.div`
-  flex: 2;
+const SkillGroup = styled.div`
+  h3 {
+    font-size: 1rem;
+    margin: 0 0 0.65rem;
+  }
 `;
 
 const List = styled.div`
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  gap: 8px;
-`;
-
-const TagsTitle = styled.h2`
-  font-size: 2vh;
-  margin-top: 0;
+  gap: 0.5rem;
 `;
 
 const Tag = styled.span`
   background: #2f2f2f;
-  border-radius: 25px;
-  padding: 5px 10px;
-  font-size: 2vh;
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
   color: #fff;
-
-  @media (max-width: 750px) {
-    max-width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 `;
 
 export function About() {
-  const isLandscapeMobile = useContext(isLandscapeMobileContext);
-
   return (
-    <Container isLandscape={isLandscapeMobile}>
-      <Title>About</Title>
+    <Container>
+      <Eyebrow>About</Eyebrow>
+      <Title>Frontend craft.<br />Product thinking.</Title>
       <Body>
-        <Descriptions>
-          <Desc bold={false}>
-            Highly motivated frontend engineer with a passion for development
-            and a track record of overcoming significant technical challenges.
-            Possessing a strong understanding of both front-end and back-end
-            technologies, I am driven to create high-quality software solutions
-            that have a meaningful impact.
-          </Desc>
-          <Desc bold={true}>
-            Constantly seeking new opportunities to expand my skills, I actively
-            pursue projects that drive innovation and make a positive
-            difference.
-          </Desc>
-        </Descriptions>
-        <Tags>
-          <TagsTitle>Skills & Technologies</TagsTitle>
-          <List>
-            <Tag>React</Tag>
-            <Tag>Javascript</Tag>
-            <Tag>Typescript</Tag>
-            <Tag>Tailwind</Tag>
-            <Tag>Storybook</Tag>
-            <Tag>Node.js</Tag>
-            <Tag>MongoDB</Tag>
-            <Tag>PostgreSQL</Tag>
-            <Tag>Html</Tag>
-            <Tag>Scss</Tag>
-            <Tag>Git</Tag>
-            <Tag>Github</Tag>
-          </List>
-        </Tags>
+        <Copy>
+          <p>
+            I’m Carlos, a frontend developer with several years of experience
+            building and improving web products. I enjoy turning product needs
+            into reliable, thoughtful user experiences, and bring a practical
+            approach to quality and collaboration.
+          </p>
+          <p>
+            I value close collaboration with design, product and backend teams.
+            I speak Spanish and Catalan natively, English at C1 level, and
+            German at B1.2 level.
+          </p>
+        </Copy>
+        <SkillGroups>
+          <SkillGroup>
+            <h3>Frontend</h3>
+            <List>{["React", "TypeScript", "JavaScript", "Sass", "CSS", "HTML", "Storybook", "Styled Components", "Webpack"].map((skill) => <Tag key={skill}>{skill}</Tag>)}</List>
+          </SkillGroup>
+          <SkillGroup>
+            <h3>Backend &amp; tools</h3>
+            <List>{["Node.js", ".NET", "PostgreSQL", "MongoDB", "Docker", "Git", "GitHub", "Swagger"].map((skill) => <Tag key={skill}>{skill}</Tag>)}</List>
+          </SkillGroup>
+          <SkillGroup>
+            <h3>Ways of working</h3>
+            <List>{["Agile / Scrum", "Pair programming", "A/B testing", "Cross-functional collaboration"].map((skill) => <Tag key={skill}>{skill}</Tag>)}</List>
+          </SkillGroup>
+        </SkillGroups>
       </Body>
     </Container>
   );

@@ -1,134 +1,92 @@
 import styled from "styled-components";
 import { Home } from "../components/home";
-import { Header } from "../components/header";
+import { Header, HeaderSection } from "../components/header";
 import { About } from "../components/about";
+import { Experience } from "../components/experience";
 import { Footer } from "../components/footer";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Work } from "../components/work";
 import { Contact } from "../components/contact";
 import { isLandscapeMobileContext } from "../context/landscapeMobile";
 
-const Container = styled.div`
-  /* overflow-y: hidden; */
-  overflow-y: auto;
-  /* height: 100vh; */
-`;
-
-const Slides = styled.div`
+const Slides = styled.main`
   height: 100vh;
-  overscroll-behavior-y: contain;
-  scroll-snap-type: y mandatory;
+  height: 100svh;
   overflow-y: auto;
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  overscroll-behavior-y: contain;
 `;
 
 const SlideContainer = styled.div<{ isLandscape: boolean }>`
-  height: 100vh;
-  background: #ffffff;
+  min-height: 100vh;
+  min-height: 100svh;
+  box-sizing: border-box;
+  background: #fff;
   color: #2f2f2f;
-  /* scroll-snap-align: center; */
   scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 40px 4rem;
 
   @media (max-width: 1000px) {
-    padding: 0 15px;
+    padding-right: 25px;
+    padding-left: 25px;
   }
+
   @media (max-width: 750px) {
-    ${(props) => props.isLandscape && "padding: 0 25px;"}
-    ${(props) => props.isLandscape && "height: 100%;"}
+    padding: 4.5rem 20px 4rem;
+    ${(props) => props.isLandscape && "padding-right: 25px; padding-left: 25px;"}
   }
 `;
 
-const dicPages = {
-  0: "#home",
-  1: "#about",
-  2: "#work",
-  3: "#contact",
-};
+const sections = ["home", "about", "experience", "work", "contact"] as const;
 
 export function Main() {
-  const [selected, setSelected] = useState<number>(0);
   const isLandscapeMobile = useContext(isLandscapeMobileContext);
+  const initialSection = Math.max(0, sections.indexOf(window.location.hash.slice(1) as typeof sections[number]));
+  const [selected, setSelected] = useState(initialSection);
+  const slides = useRef<HTMLElement>(null);
 
-  const [initSlide] = useState(
-    window.location.hash
-      ? +Object.keys(dicPages).find(
-          (key) => dicPages[key] === window.location.hash
-        )!
-      : 0
-  );
-  const slides = useRef<HTMLDivElement>(null);
   function scrollTo(page: number) {
-    let doc = document.getElementById(dicPages[page].split("#")[1]);
-    if (!doc || !slides || !slides.current) return;
-    slides.current.scrollTo(0, doc.offsetTop);
+    const element = document.getElementById(sections[page]);
+    if (!element || !slides.current) return;
+    slides.current.scrollTo({ top: element.offsetTop, behavior: "smooth" });
   }
 
-  const checkKey = useCallback(
-    (e: any) => {
-      e = e || window.event;
-      e.preventDefault();
-      if (e.keyCode === 38 && selected > 0) {
-        scrollTo(selected - 1);
-      } else if (e.keyCode === 40 && selected < 3) {
-        scrollTo(selected + 1);
-      }
-    },
-    [selected]
-  );
-
-  useEffect(() => {
-    document.addEventListener("keydown", checkKey);
-    return () => {
-      document.removeEventListener("keydown", checkKey);
-    };
-  }, [checkKey]);
-
-  function onScroll(e: any) {
-    let page = Math.trunc(e.target.scrollTop / e.target.offsetHeight);
+  function onScroll(event: React.UIEvent<HTMLElement>) {
+    const scrollTop = event.currentTarget.scrollTop;
+    const page = sections.reduce((nearest, id, index) => {
+      const section = document.getElementById(id);
+      const nearestSection = document.getElementById(sections[nearest]);
+      if (!section || !nearestSection) return nearest;
+      return Math.abs(section.offsetTop - scrollTop) < Math.abs(nearestSection.offsetTop - scrollTop)
+        ? index
+        : nearest;
+    }, 0);
     setSelected(page);
   }
 
   useEffect(() => {
-    window.history.replaceState(null, "", dicPages[selected]);
+    window.history.replaceState(null, "", `#${sections[selected]}`);
   }, [selected]);
 
   useEffect(() => {
-    setSelected(initSlide);
-    scrollTo(initSlide);
-  }, [initSlide]);
+    if (initialSection > 0) scrollTo(initialSection);
+  }, [initialSection]);
 
   return (
-    <Container>
-      <Header selected={selected} />
-      <Slides onScroll={(e: any) => onScroll(e)} ref={slides}>
-        <SlideContainer id={"home"} isLandscape={isLandscapeMobile}>
-          <Home />
-        </SlideContainer>
-        <SlideContainer id={"about"} isLandscape={isLandscapeMobile}>
-          <About />
-        </SlideContainer>
-        <SlideContainer id={"work"} isLandscape={isLandscapeMobile}>
-          <Work />
-        </SlideContainer>
-        <SlideContainer id={"contact"} isLandscape={isLandscapeMobile}>
-          <Contact />
-        </SlideContainer>
-        {selected !== 3 && <Footer />}
+    <>
+      <Header selected={selected as HeaderSection} />
+      <Slides onScroll={onScroll} ref={slides}>
+        <SlideContainer id="home" isLandscape={isLandscapeMobile}><Home /></SlideContainer>
+        <SlideContainer id="about" isLandscape={isLandscapeMobile}><About /></SlideContainer>
+        <SlideContainer id="experience" isLandscape={isLandscapeMobile}><Experience /></SlideContainer>
+        <SlideContainer id="work" isLandscape={isLandscapeMobile}><Work /></SlideContainer>
+        <SlideContainer id="contact" isLandscape={isLandscapeMobile}><Contact /></SlideContainer>
       </Slides>
-    </Container>
+      {selected !== 4 && <Footer />}
+    </>
   );
 }
